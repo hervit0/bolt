@@ -13,9 +13,20 @@ dep ensure
 
 ## Run it
 
+Inside Docker
 ```
 go build bolt.go
-./bolt
+```
+
+Outside Docker
+```
+env GOOS=darwin GOARCH=amd64 go build -v bolt.go
+```
+
+Use it
+```
+$ ./bolt
+boom boom! No way it's working!
 ```
 
 ## Docs
