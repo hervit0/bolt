@@ -13,20 +13,15 @@ dep ensure
 
 ## Run it
 
-Inside Docker
+Build it
 ```
-go build bolt.go
-```
-
-Outside Docker
-```
-env GOOS=darwin GOARCH=amd64 go build -v bolt.go
+docker exec -it bolt_bolt_1 sh -c "./mount.sh"
 ```
 
 Use it
 ```
 $ ./bolt
-boom boom! No way it's working!
+This is Bolt, try `bolt help` for more
 ```
 
 ## Docs
