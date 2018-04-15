@@ -21,6 +21,12 @@ Otherwise, nothing.
 
 ## Run it
 
+From outside
+```
+curl -s https://raw.githubusercontent.com/hervit0/bolt/develop/bolt-install.sh | sh
+curl -s https://raw.githubusercontent.com/hervit0/bolt/master/bolt-install | sh
+```
+
 Install it
 ```
 ./install

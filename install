@@ -1,7 +1,9 @@
 #!/bin/bash
 # Building the CLI tool
 echo "Building CLI tool..."
-docker exec -it bolt_bolt_1 sh -c "./mount.sh"
+docker-compose -f docker-compose.install.yml up -d
+docker exec bolt_bolt_1 sh -c "./mount.sh"
+docker cp bolt_bolt_1:/go/src/app/bolt bolt
 
 # Wait for the tool to be built
 while [ ! -f bolt ]

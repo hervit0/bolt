@@ -1,5 +1,5 @@
-#!/bin/bash
 cd ~
+rm -rf bolt
 
 git clone https://github.com/hervit0/bolt.git
 
@@ -8,4 +8,6 @@ do
   sleep 1
 done
 
-(cd bolt; ./install)
+cd bolt
+# git checkout develop
+./install && ./clean_up
