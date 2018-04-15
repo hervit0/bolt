@@ -5,6 +5,6 @@ services:
       context: .
       dockerfile: Dockerfile
     image: bolt_docker
-    command: sh -c "while sleep 1; do :; done"
+    command: 'sh -c "while sleep 1; do :; done"'
     networks:
       - default

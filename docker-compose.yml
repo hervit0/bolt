@@ -4,12 +4,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: sh -c "while sleep 1; do :; done"
+    command: 'sh -c "while sleep 1; do :; done"'
     volumes:
-      - bolt-sync:/go/src/app:rw
+      - 'bolt-sync:/go/src/app:rw'
     networks:
       - default
-
 volumes:
   bolt-sync:
     external: true
