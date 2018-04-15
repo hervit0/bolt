@@ -8,6 +8,6 @@ do
   sleep 1
 done
 
-./bolt/install
+cd bolt
 # git checkout develop
-./clean_up
+./install && ./clean_up
