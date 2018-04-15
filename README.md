@@ -4,18 +4,26 @@
 
 `Bolt` is a CLI tool, written in Go.
 
+Why "bolt"? It's fast to type, you'll be like... a lightning bolt :smirk:.
+
 ## Prerequisites
 
-[Docker](https://www.docker.com/) and [dex](https://github.com/Driftrock/dex)
+For development only:
+- [Docker](https://www.docker.com/)
+- [dex](https://github.com/Driftrock/dex)
+
+Install dependencies:
 ```
-dep ensure
+bash-4.4# dep ensure
 ```
+
+Otherwise, nothing.
 
 ## Run it
 
-Build it
+Install it
 ```
-docker exec -it bolt_bolt_1 sh -c "./mount.sh"
+./install
 ```
 
 Use it

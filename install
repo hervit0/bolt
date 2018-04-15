@@ -1,0 +1,14 @@
+#!/bin/bash
+# Building the CLI tool
+echo "Building CLI tool..."
+docker exec -it bolt_bolt_1 sh -c "./mount.sh"
+
+# Wait for the tool to be built
+while [ ! -f bolt ]
+do
+  sleep 1
+done
+
+# Install tool
+echo "Permission to make the CLI tool everywhere? (will be skipped, if you've already granted access)"
+sudo mv bolt /usr/local/bin

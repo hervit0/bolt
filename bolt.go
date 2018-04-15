@@ -17,7 +17,7 @@ func main() {
   app.Name = "Bolt"
   app.Usage = "Bolt is wrapping various helpers"
   app.Action = func(c *cli.Context) error {
-    fmt.Println("This is Bolt, try `bolt help` for more")
+    fmt.Println("This is Bolt, try `bolt help` for more.")
     return nil
   }
 
