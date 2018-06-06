@@ -1,0 +1,11 @@
+version: '3'
+services:
+  test:
+    build: .
+    command: go test
+
+  release:
+    build: .
+    command: ./scripts/release.sh
+    environment:
+      - GITHUB_TOKEN

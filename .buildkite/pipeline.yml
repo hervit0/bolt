@@ -1,0 +1,20 @@
+steps:
+  - label: ':hammer: Test'
+    plugins:
+      docker-compose#v1.8.4:
+        run: test
+        config: docker-compose.ci.yml
+    command: ''
+
+  - wait
+
+  - label: ':github: Release package'
+    plugins:
+      docker-compose#v1.8.4:
+        run: release
+        config: docker-compose.ci.yml
+    command: ''
+    branches: 'master'
+    retry:
+      manual:
+        permit_on_passed: true

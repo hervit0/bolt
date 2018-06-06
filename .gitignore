@@ -18,3 +18,5 @@ bolt
 
 # Dependencies managed by `dep`
 golang-dep/
+
+.build/

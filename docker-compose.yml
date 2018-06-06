@@ -1,14 +1,9 @@
-version: '2'
+version: '3'
 services:
   bolt:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     command: 'sh -c "while sleep 1; do :; done"'
     volumes:
-      - 'bolt-sync:/go/src/app:rw'
+      - .:/go/src/app
     networks:
       - default
-volumes:
-  bolt-sync:
-    external: true

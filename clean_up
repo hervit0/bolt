@@ -1,8 +1,0 @@
-#!/bin/bash
-# Building the CLI tool
-echo "Removing any docker files"
-docker-compose down
-docker rmi $(docker images -a | grep "bolt_docker" | awk '{print $3}')
-
-cd ~
-rm -rf bolt
