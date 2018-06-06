@@ -6,21 +6,21 @@ DARWIN_RELEASE_NAME=bolt-darwin-amd64
 
 GOARCH=amd64 GOOS=darwin go build -v -o .build/${DARWIN_RELEASE_NAME}
 
-TAG=v0.1.0
-
-git remote -v
-
-git tag ${TAG} 
-git push --tags
+TAG=v0.1.1
 
 go get github.com/aktau/github-release
 
+github-release release \
+    --user hervit0 \
+    --repo bolt \
+    --tag ${TAG}
+
 github-release upload \
-    --user danbadge \
+    --user hervit0 \
     --repo bolt \
     --tag ${TAG} \
     --name "${DARWIN_RELEASE_NAME}" \
-    --file build/${DARWIN_RELEASE_NAME}
+    --file .build/${DARWIN_RELEASE_NAME}
 
 
 # build all

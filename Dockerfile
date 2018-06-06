@@ -7,7 +7,7 @@ RUN apk update && apk upgrade && \
 
 RUN go get github.com/golang/dep/cmd/dep
 
-ADD . /go/src/app
+ADD . /go/src/app/
 
 RUN dep ensure
 
