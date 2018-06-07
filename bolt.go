@@ -37,7 +37,7 @@ func main() {
 	app.EnableBashCompletion = true
 
 	app.Name = "bolt"
-	app.Usage = "Bolt is wrapping various helpers"
+	app.Usage = "Bolt is a lightning fast CLI tool that speeds up development"
 	app.Action = func(c *cli.Context) error {
 		fmt.Println("This is Bolt, try `bolt help` for more!")
 		return nil
