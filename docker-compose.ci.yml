@@ -6,6 +6,7 @@ services:
 
   release:
     build: .
-    command: .buildkite/scripts/release.sh
+    command: .buildkite/scripts/docker_release.sh
     environment:
       - GITHUB_TOKEN
+      - RELEASE_VERSION

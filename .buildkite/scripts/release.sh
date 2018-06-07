@@ -2,30 +2,7 @@
 set -x #echo on
 set -e #exit on error
 
-DARWIN_RELEASE_NAME=bolt-darwin-amd64
+export RELEASE_VERSION=$(buildkite-agent meta-data get release-version)
 
-GOARCH=amd64 GOOS=darwin go build -v -o .build/${DARWIN_RELEASE_NAME}
-
-TAG=v0.1.1
-
-go get github.com/aktau/github-release
-
-github-release release \
-    --user hervit0 \
-    --repo bolt \
-    --tag ${TAG}
-
-github-release upload \
-    --user hervit0 \
-    --repo bolt \
-    --tag ${TAG} \
-    --name "${DARWIN_RELEASE_NAME}" \
-    --file .build/${DARWIN_RELEASE_NAME}
-
-
-# build all
-# for GOOS in darwin linux; do
-#   for GOARCH in 386 amd amd64; do
-#     GOARCH=$GOARCH GOOS=$GOOS go build -v -o build/cdex-$GOOS-$GOARCH
-#   done
-# done
+docker-compose -f docker-compose.ci.yml build
+docker-compose -f docker-compose.ci.yml run release

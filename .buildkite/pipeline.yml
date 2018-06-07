@@ -6,15 +6,16 @@ steps:
         config: docker-compose.ci.yml
     command: ''
 
-  - wait
+  - block: "Release"
+    prompt: "Please enter a version for the release"
+    fields: 
+      - text: "Release Version"
+        key: "release-version"
+        default: "v0.1.0"
+        required: true
 
-  - label: ':github: Release package'
-    plugins:
-      docker-compose#v1.8.4:
-        run: release
-        config: docker-compose.ci.yml
-    command: ''
-    branches: 'master'
+  - label: ':github: Deploy package'
+    command: .buildkite/scripts/release.sh
     retry:
       manual:
         permit_on_passed: true
