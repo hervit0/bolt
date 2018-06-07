@@ -20,3 +20,5 @@ bolt
 golang-dep/
 
 .build/
+
+vendor/
