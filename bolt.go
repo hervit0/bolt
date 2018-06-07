@@ -1,86 +1,63 @@
 package main
 
 import (
-  "fmt"
-  "log"
-  "os"
-  "os/exec"
-  "strings"
+	"fmt"
+	"log"
+	"os"
+	"os/exec"
 
-  "github.com/urfave/cli"
+	"github.com/urfave/cli"
 )
 
+type Runner interface {
+	Execute(command string, args ...string) error
+}
+
+type CommandLineRunner struct{}
+
+func (runner CommandLineRunner) Execute(command string, args ...string) error {
+	cmd := exec.Command(command, args...)
+
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+
+	if err := cmd.Start(); err != nil {
+		return err
+	}
+
+	if err := cmd.Wait(); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func main() {
-  app := cli.NewApp()
-  app.EnableBashCompletion = true
+	app := cli.NewApp()
+	app.EnableBashCompletion = true
 
-  app.Name = "Bolt"
-  app.Usage = "Bolt is wrapping various helpers"
-  app.Action = func(c *cli.Context) error {
-    fmt.Println("This is Bolt, try `bolt help` for more!")
-    return nil
-  }
+	app.Name = "bolt"
+	app.Usage = "Bolt is wrapping various helpers"
+	app.Action = func(c *cli.Context) error {
+		fmt.Println("This is Bolt, try `bolt help` for more!")
+		return nil
+	}
 
-  app.Commands = []cli.Command{
-    {
-      Name:    "logs",
-      Aliases: []string{"l"},
-      Usage:   "See the current git logs of your folder",
-      Action:  func(c *cli.Context) error {
-        commandLine := strings.Split("git log --graph --abbrev-commit --decorate", " ")
-        out, err := exec.Command(commandLine[0], commandLine[1:]...).Output()
+	app.Commands = []cli.Command{
+		{
+			Name:    "git-log",
+			Aliases: []string{"gl"},
+			Usage:   "See the git logs of your repository in your current directory",
+			Action: func(c *cli.Context) error {
+				runner := CommandLineRunner{}
+				return GitLog(c, runner)
+			},
+		},
+	}
 
-        if err != nil {
-          log.Fatal(err)
-        }
+	err := app.Run(os.Args)
 
-        fmt.Printf("%s", out)
-        return nil
-      },
-    },
-    {
-      Name:    "install",
-      Aliases: []string{"i"},
-      Usage:   "Install various useful tools",
-      Subcommands: []cli.Command{
-        {
-          Name:  "docker-sync",
-          Aliases: []string{"ds"},
-          Usage: "Install docker-sync\t -\t a Ruby version manager is required",
-          Action: func(c *cli.Context) error {
-            cmd := "curl -s https://raw.githubusercontent.com/hervit0/bolt/master/scripts/install_docker_sync | sh"
-            out, err := exec.Command("bash", "-c", cmd).Output()
-
-            if err != nil {
-              log.Fatal(err)
-            }
-
-            fmt.Printf("%s", out)
-            return nil
-          },
-        },
-        {
-          Name:  "dex",
-          Aliases: []string{"dx"},
-          Usage: "Install dex\t -\t the gem `docker-sync` is required",
-          Action: func(c *cli.Context) error {
-            cmd := "curl -s https://raw.githubusercontent.com/hervit0/bolt/master/scripts/install_dex | sh"
-            out, err := exec.Command("bash", "-c", cmd).Output()
-
-            if err != nil {
-              log.Fatal(err)
-            }
-
-            fmt.Printf("%s", out)
-            return nil
-          },
-        },
-      },
-    },
-  }
-
-  err := app.Run(os.Args)
-  if err != nil {
-    log.Fatal(err)
-  }
+	if err != nil {
+		log.Fatal(err)
+	}
 }
