@@ -18,6 +18,7 @@ type CommandLineRunner struct{}
 func (runner CommandLineRunner) Execute(command string, args ...string) error {
 	cmd := exec.Command(command, args...)
 
+	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 
@@ -55,7 +56,7 @@ func main() {
 		},
 		{
 			Name:    "docker-compose-exec",
-			Aliases: []string{"dce"},
+			Aliases: []string{"dex"},
 			Usage:   "Build, run and exec on to a local container",
 			Flags: []cli.Flag{
 				cli.StringFlag{
@@ -64,7 +65,7 @@ func main() {
 					Usage: "Name of the container you want to login into. This is defined in the docker-compose.yml",
 				},
 				cli.StringFlag{
-					Name:  "container-command,cmd",
+					Name:  "container-command,c",
 					Value: "bash",
 					Usage: "The command you want to run on the container. Use `bash` or `sh` if you are looking to develop within the container",
 				},
