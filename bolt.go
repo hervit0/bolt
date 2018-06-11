@@ -53,6 +53,27 @@ func main() {
 				return GitLog(c, runner)
 			},
 		},
+		{
+			Name:    "docker-compose-exec",
+			Aliases: []string{"dce"},
+			Usage:   "Build, run and exec on to a local container",
+			Flags: []cli.Flag{
+				cli.StringFlag{
+					Name:  "container-name,n",
+					Value: "lead-store",
+					Usage: "Name of the container you want to login into. This is defined in the docker-compose.yml",
+				},
+				cli.StringFlag{
+					Name:  "container-command,cmd",
+					Value: "bash",
+					Usage: "The command you want to run on the container. Use `bash` or `sh` if you are looking to develop within the container",
+				},
+			},
+			Action: func(c *cli.Context) error {
+				runner := CommandLineRunner{}
+				return GitLog(c, runner)
+			},
+		},
 	}
 
 	err := app.Run(os.Args)

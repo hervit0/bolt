@@ -22,3 +22,5 @@ golang-dep/
 .build/
 
 vendor/
+
+app
