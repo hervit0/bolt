@@ -13,7 +13,7 @@ At present, Bolt is just a CLI proxy which runs other CLI tools. For it to be us
 
 ### Installing Bolt
 
-Visit the [releases page](releases) for the latest version.
+Visit the [releases page](https://github.com/hervit0/bolt/releases) for the latest version.
 
 Run the following command to install bolt and start using it locally:
 ```

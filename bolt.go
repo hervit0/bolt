@@ -71,7 +71,7 @@ func main() {
 			},
 			Action: func(c *cli.Context) error {
 				runner := CommandLineRunner{}
-				return GitLog(c, runner)
+				return DockerComposeExec(c, runner)
 			},
 		},
 	}
