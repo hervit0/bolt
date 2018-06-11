@@ -2,38 +2,25 @@
 
 ## Overview
 
-`Bolt` is a CLI tool, written in Go.
+Bolt is a lightning fast CLI tool that speeds up development.
 
-Why "bolt"? It's fast to type, you'll be like... a lightning bolt :smirk:.
+## Using Bolt CLI
 
-## Prerequisites
-
-For development only:
+At present, Bolt is just a CLI proxy which runs other CLI tools. For it to be useful you will need the following tools installed on your local workstation:
 - [Docker](https://www.docker.com/)
-- [dex](https://github.com/Driftrock/dex)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- Git
 
-Install dependencies:
+### Installing Bolt
+
+Visit the [releases page](releases) for the latest version.
+
+Run the following command to install bolt and start using it locally:
 ```
-bash-4.4# dep ensure
-```
-
-Otherwise, nothing.
-
-## Install it
-
-Install it from outside
-```
-curl -s https://raw.githubusercontent.com/hervit0/bolt/master/bolt-install | sh
+curl -Ls https://github.com/hervit0/bolt/releases/download/<RELEASE_VERSION>/bolt-darwin-amd64 --output bolt && chmod 755 bolt && mv bolt /usr/local/bin/bolt
 ```
 
-(or unreleased: `curl -s https://raw.githubusercontent.com/hervit0/bolt/develop/bolt-install.sh | sh`)
-
-Install it from this repo (development mode)
-```
-$ ./install
-```
-
-## Use it
+Then you should be able to try the following command to prove it is working
 
 ```
 $ bolt
