@@ -15,9 +15,9 @@ At present, Bolt is just a CLI proxy which runs other CLI tools. For it to be us
 
 Visit the [releases page](https://github.com/hervit0/bolt/releases) for the latest version.
 
-Run the following command to install bolt and start using it locally:
+Run the following command to install bolt and start using it locally (remember to update the RELEASE_VERSION first):
 ```
-curl -Ls https://github.com/hervit0/bolt/releases/download/<RELEASE_VERSION>/bolt-darwin-amd64 --output bolt && chmod 755 bolt && mv bolt /usr/local/bin/bolt
+RELEASE_VERSION="v0.1.6" sh -c 'curl -Lf https://github.com/hervit0/bolt/releases/download/$RELEASE_VERSION/bolt-darwin-amd64 --output bolt && chmod 755 bolt && mv bolt /usr/local/bin/bolt'
 ```
 
 Then you should be able to try the following command to prove it is working
@@ -40,4 +40,5 @@ This is Bolt, try `bolt help` for more
 ```
 $ dep init
 $ dep ensure -add github.com/pkg/errors
+$ go test
 ```
