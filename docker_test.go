@@ -12,7 +12,7 @@ func TestDockerComposeExec(t *testing.T) {
 	containerCmd := "bash"
 
 	testRunner := new(MockRunner)
-	testRunner.On("Execute", "docker-compose", []string{"up", "-d", "--build"}).Return(nil).Once()
+	testRunner.On("Execute", "docker-compose", []string{"up", "-d", "--build", "--no-recreate"}).Return(nil).Once()
 	testRunner.On("Execute", "docker-compose", []string{"exec", containerName, containerCmd}).Return(nil).Once()
 
 	flags := flag.NewFlagSet("tag", 0)

@@ -5,7 +5,7 @@ import (
 )
 
 func DockerComposeExec(context *cli.Context, runner Runner) error {
-	err := runner.Execute("docker-compose", "up", "-d", "--build")
+	err := runner.Execute("docker-compose", "up", "-d", "--build", "--no-recreate")
 
 	if err != nil {
 		return cli.NewExitError(err.Error(), 1)
